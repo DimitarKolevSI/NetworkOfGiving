@@ -37,4 +37,8 @@ public class CharityService {
         return mssqlCharityDao.searchCharity(key);
     }
 
+    public Charity getCharityByTitle(String title){
+        return mssqlCharityDao.getCharityByTitle(title);
+    }
+
 }

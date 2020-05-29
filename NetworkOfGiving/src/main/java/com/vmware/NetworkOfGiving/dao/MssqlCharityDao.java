@@ -44,8 +44,13 @@ public class MssqlCharityDao implements CharityDao {
     }
 
     @Override
+    public Charity getCharityByTitle(String title) {
+        return jdbcTemplate.queryForObject("SELECT * FROM charity WHERE title LIKE ?",new CharityMapper(), title);
+    }
+
+    @Override
     public List<Charity> getAllCharities() {
-        return jdbcTemplate.query("SELECT * FROM charity", new CharityMapper());
+        return jdbcTemplate.query("SELECT * FROM charity ORDER BY id DESC", new CharityMapper());
     }
 
     @Override

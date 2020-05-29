@@ -12,6 +12,8 @@ public interface CharityDao {
 
     void deleteCharity(int id);
 
+    Charity getCharityByTitle(String title);
+
     List<Charity> getAllCharities();
 
     List<Charity> searchCharity(String key);
