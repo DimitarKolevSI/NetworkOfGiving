@@ -50,7 +50,7 @@
         </div>
 </clr-modal>
 
-<div *ngIf="currentCharity.moneyNeeded===0 && currentCharity.volunteersNeeded > currentCharity.volunteers">
+<div *ngIf="currentCharity.volunteersNeeded !==0 && currentCharity.volunteersNeeded > currentCharity.volunteers">
     <button type="button" class="btn btn-success" (click)="checkForLogin('vOpened')" id="help">
         Volunteer
      </button>
@@ -69,5 +69,18 @@
 </clr-modal>
 
 <div *ngIf="currentCharity.creatorsUsername === userService.getCurrentUsername()">
-  <button type="button" class="btn btn-danger" id="help" (click)="delete()">Delete</button>
+  <button type="button" class="btn btn-danger" id="help" (click)="deletion = true">Delete</button>
+  <button type="button" class="btn btn-info" id="help" (click)="edit()">Edit</button>
 </div>
+
+<clr-modal [(clrModalOpen)]="deletion" [clrModalClosable]="false">
+    <h4 class="modal-title">Are you sure that you want to delete this charity event?</h4>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-warning" (click)="delete()">
+           Delete
+        </button>
+        <button type="button" class="btn btn-success-outline" (click)="deletion = false">
+            Cancel
+         </button>
+    </div>
+  </clr-modal>

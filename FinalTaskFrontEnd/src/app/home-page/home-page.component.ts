@@ -11,7 +11,6 @@ export class HomePageComponent implements OnInit {
 
   constructor(private service: CharityService) { }
 
-  numbers: Number[] = [];
   charities: Charity[] = [];
   key:string='';
 

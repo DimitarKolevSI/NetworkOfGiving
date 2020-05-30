@@ -31,6 +31,12 @@ h2{
 #charities
 {
   position: relative;  
-  left: 25%;
   top: 50%;
+  width: 50%;
+  display:inline-block;
+  margin-right: -25%;
+}
+
+.description{
+    margin-left: 30px;
 }

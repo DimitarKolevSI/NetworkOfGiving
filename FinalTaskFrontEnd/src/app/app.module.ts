@@ -15,6 +15,7 @@ import { DetailCharityViewComponent } from './detail-charity-view/detail-charity
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MyProfilePageComponent } from './my-profile-page/my-profile-page.component';
 import { SearchPageComponent } from './search-page/search-page.component';
+import { CutPipePipe } from './cut-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SearchPageComponent } from './search-page/search-page.component';
     HomePageComponent,
     DetailCharityViewComponent,
     MyProfilePageComponent,
-    SearchPageComponent
+    SearchPageComponent,
+    CutPipePipe
   ],
   imports: [
     BrowserModule,

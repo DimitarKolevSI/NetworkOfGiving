@@ -51,7 +51,10 @@ export class RegisterComponent implements OnInit {
     this.form.age = +this.form.age;
     if(!this.form.username.match(lettersAndNumbersCheck))
     {
-      this.errorMessage = "Invalid username! Should contain only letters and digits"
+      this.errorMessage = "Invalid username! Should contain only letters and digits!"
+    }
+    else if(this.form.username.length < 6 ){
+      this.errorMessage = "Username should be at least 6 symbols long!"
     }
     else if(!this.form.password.match(lettersAndNumbersCheck) || this.form.password.length <8){
       this.errorMessage = "Password should contain only letters and numbers and should be at least 8 symbols!";

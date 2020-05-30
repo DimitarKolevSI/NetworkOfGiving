@@ -8,11 +8,14 @@
 
 <div  *ngFor = "let charity of charities" id="charities">
     <div class="clr-row">
-        <div class="clr-col-lg-5 clr-col-10">
+        <div class="clr-col-lg-6 clr-col-10">
             <a [routerLink]="['/charity',charity.title]" class="card clickable" >
                 <h2>{{charity.title}}</h2> 
                 <div class="card-img">
                     <img src="../../assets/OIP.jpg">
+                </div>
+                <div class="description">
+                    {{charity.description|cut}}
                 </div>
                 <div class="card-block">
                     <div *ngIf="charity.volunteersNeeded != 0">

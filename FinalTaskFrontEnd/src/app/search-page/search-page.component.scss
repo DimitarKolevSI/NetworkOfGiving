@@ -1,7 +1,8 @@
 .dessert{
+    position: relative;
     margin-top: 30px;
     width: 1000px;
-    
+    left: 25%;
 }
 
 .card-img{
@@ -13,10 +14,11 @@
 #charities
 {
   position: relative;  
-  left: 25%;
   top: 50%;
+  width: 50%;
+  display:inline-block;
+  margin-right: -25%;
 }
-
 img{
     margin: 30px;
 }

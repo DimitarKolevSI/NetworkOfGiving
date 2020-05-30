@@ -10,6 +10,7 @@ import { UserService } from './services/user-service';
 })
 export class AppComponent implements OnInit{
   title = 'FinalTaskFrontEnd';
+  key:string='';
   public currentUsername: String;
   public opened:boolean = false;
   constructor(public service:CharityService, public userService:UserService){
@@ -18,6 +19,7 @@ export class AppComponent implements OnInit{
     }
     this.currentUsername = localStorage.getItem("username");
   }
+
 
   ngOnInit(){
   }

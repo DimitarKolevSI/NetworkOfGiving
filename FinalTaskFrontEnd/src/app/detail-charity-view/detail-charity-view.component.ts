@@ -15,7 +15,8 @@ export class DetailCharityViewComponent implements OnInit {
   title: string
   opened:boolean = false;
   vOpened:boolean = false;
-  amountToDonate:Number = 0;
+  deletion:boolean = false;
+  amountToDonate:number = 0;
   constructor(private service:CharityService, private activatedRouter: ActivatedRoute,
               private router:Router, public userService:UserService) { }
 
@@ -35,7 +36,11 @@ export class DetailCharityViewComponent implements OnInit {
   donation():void{
     this.opened=false;
     if(this.amountToDonate > 0){
-      this.service.donate(this.amountToDonate.valueOf(), this.currentCharity.id)
+      this.amountToDonate = +this.amountToDonate;
+      if(this.amountToDonate + this.currentCharity.moneyDonated > this.currentCharity.moneyNeeded){
+        this.amountToDonate = this.currentCharity.moneyNeeded - this.currentCharity.moneyDonated;
+      }
+      this.service.donate(this.amountToDonate, this.currentCharity.id)
       .subscribe(
         ()=>this.refreshCharity()
       );
@@ -59,7 +64,7 @@ export class DetailCharityViewComponent implements OnInit {
 
   checkForLogin(window:string):void{
     if(this.userService.getCurrentUsername() === ''){
-      alert("You need to log in first!")
+      alert("You need to login first!")
     }
     else{
       if(window==='opened'){
@@ -84,5 +89,9 @@ export class DetailCharityViewComponent implements OnInit {
     this.service.delete(this.currentCharity.id).subscribe(
       ()=>this.router.navigate(['/home'])
     )
+  }
+
+  edit(){
+    console.log("TODO");
   }
 }

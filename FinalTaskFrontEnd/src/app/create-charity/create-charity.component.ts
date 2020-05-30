@@ -44,13 +44,35 @@ export class CreateCharityComponent implements OnInit {
   }
 
   checkIfValid():boolean{
-    if(this.form.volunteersNeeded<0){
+    var floatNumberCheck='^[0-9]+\.[0-9]+$';
+    var numberCheck='^[0-9]+$';
+    var lettersAndSymbols='^[0-9a-zA-Z.,-:()\/ ]+$'
+    if(this.form.volunteersNeeded === undefined || !this.form.volunteersNeeded.toString().match(numberCheck)){
+      this.form.volunteersNeeded = 0;
+    }
+    if(this.form.moneyNeeded === undefined || !this.form.moneyNeeded.toString().match(floatNumberCheck)){
+      this.form.moneyNeeded = 0;
+    }
+    if(!this.form.title.match(lettersAndSymbols)){
+      this.errorMessage = "Title has some forbidden characters!"
+    } 
+    else if(!this.form.description.match(lettersAndSymbols)){
+      this.errorMessage = "Description has some forbidden characters!"
+    }
+    else if(this.form.description.length > 300){
+      this.errorMessage = "Description must be less than 300 characters!"
+    } 
+    else if(!this.isInt(this.form.volunteersNeeded)){
+      this.errorMessage = "The volunteers should a whole number!"
+    }
+    else if(this.form.volunteersNeeded<0){
       this.errorMessage = "The needed volunteers can't be negative number!";
     }
     else if(this.form.moneyNeeded < 0){
       this.errorMessage = "The needed money can't be negative number!";
     }
-    else if(this.form.volunteersNeeded == 0 && this.form.moneyNeeded == 0){
+    else if(this.form.volunteersNeeded == 0 && this.form.moneyNeeded == 0 || 
+      (this.form.volunteersNeeded === undefined && this.form.moneyNeeded === undefined)){
       this.errorMessage = "You have to choose if you need volunteers or money for the charity!"
     }
     else{
@@ -58,6 +80,18 @@ export class CreateCharityComponent implements OnInit {
     }
     this.isInvalid=true;
     return false;
+  }
+
+  isInt(n:any){
+    return Number(n) === n && n % 1 === 0;
+  }   
+
+  isFloat(n:any){
+    n = parseFloat(n);
+    if(isNaN(n)){
+      return false;
+    }
+    return true;
   }
 
 }
