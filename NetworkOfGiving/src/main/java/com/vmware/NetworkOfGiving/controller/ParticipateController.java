@@ -2,7 +2,11 @@ package com.vmware.NetworkOfGiving.controller;
 
 import com.vmware.NetworkOfGiving.service.ParticipateService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping(path = "/participate")
@@ -16,11 +20,17 @@ public class ParticipateController {
         this.participateService = participateService;
     }
 
+    @ResponseStatus(code=HttpStatus.BAD_REQUEST)
     @CrossOrigin(origins = LOCAL_HOST_URL)
     @PostMapping(path = "/{username}/{charityId}")
-    public void participateIn(@PathVariable("username") String username, @PathVariable("charityId") int charityId)
+    public ResponseEntity participateIn(@PathVariable("username") String username, @PathVariable("charityId") int charityId)
     {
-        System.out.println("Participating in: " + charityId);
-        participateService.participateIn(username, charityId);
+        try{
+            System.out.println("Participating in: " + charityId);
+            participateService.participateIn(username, charityId);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
 }

@@ -39,8 +39,8 @@ public class MssqlCharityDao implements CharityDao {
     @Override
     public void deleteCharity(int id) {
         jdbcTemplate.update("DELETE FROM charity WHERE id LIKE ?",id);
-        jdbcTemplate.update("DELETE FROM participateIn WHERE charityId LIKE ?",id);
-        jdbcTemplate.update("DELETE FROM donateTo WHERE charityId LIKE ?",id);
+        /*jdbcTemplate.update("DELETE FROM participateIn WHERE charityId LIKE ?",id);
+        jdbcTemplate.update("DELETE FROM donateTo WHERE charityId LIKE ?",id);*/
     }
 
     @Override
